@@ -24,7 +24,7 @@ public class EmployeeService implements IEmployeeService{
 
     @Override
     public Employee getEmployeePayrollDataById(int empId) {
-            return employeeRepo.findById(empId).orElseThrow(() -> new EmployeeException("Employee not found for id " + empId));
+            return employeeRepo.findById(empId).orElseThrow(() -> new EmployeeException("Employee not found for id '" + empId + "'"));
     }
 
     @Override
@@ -40,7 +40,7 @@ public class EmployeeService implements IEmployeeService{
             employee.setEmployeeId(empId);
             return employeeRepo.save(employee);
         } else {
-            throw new EmployeeException("Employee not found for id " + empId);
+            throw new EmployeeException("Employee not found for id '" + empId + "'");
         }
     }
 
@@ -49,13 +49,13 @@ public class EmployeeService implements IEmployeeService{
         if (employeeRepo.findById(empId).isPresent()){
             employeeRepo.deleteById(empId);
         } else {
-            throw new EmployeeException("Employee not found for id " + empId);
+            throw new EmployeeException("Employee not found for id '" + empId + "'");
         }
     }
 
     public List<Employee> getEmployeeDataByName(String employeeName) {
         if (employeeRepo.findByName(employeeName).isEmpty()){
-            throw new EmployeeException("Employees not found for name " + employeeName);
+            throw new EmployeeException("Employees not found for name '" + employeeName + "'");
         } else {
             return employeeRepo.findByName(employeeName);
         }
@@ -63,7 +63,7 @@ public class EmployeeService implements IEmployeeService{
 
     public List<Employee> getEmployeeDataByDepartment(String dept) {
         if (employeeRepo.findByDept(dept).isEmpty()){
-            throw new EmployeeException("Employees not found for department " + dept);
+            throw new EmployeeException("Employees not found for department '" + dept + "'");
         } else {
             return employeeRepo.findByDept(dept);
         }

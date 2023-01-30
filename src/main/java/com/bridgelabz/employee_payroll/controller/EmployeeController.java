@@ -13,29 +13,30 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("EmployeePayroll")
+@RequestMapping("employee-payroll")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class EmployeeController {
     @Autowired
     private IEmployeeService employeeService;
-    @RequestMapping("getAll")
+    @GetMapping("getAll")
     public ResponseEntity<ResponseDTO> getAllEmployeePayrollData(){
         List<Employee> employeeList = employeeService.getAllEmployeePayrollData();
         ResponseDTO responseDTO = new ResponseDTO("Get Call Success", employeeList);
         return  new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-    @GetMapping("get/{empId}")
+    @GetMapping("getById/{empId}")
     public ResponseEntity<ResponseDTO> getEmployeePayrollDataById(@PathVariable int empId){
         Employee empById = employeeService.getEmployeePayrollDataById(empId);
         ResponseDTO responseDTO = new ResponseDTO("Get Call by Id Success", empById);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-    @GetMapping("empName/{empName}")
+    @GetMapping("getByName/{empName}")
     public ResponseEntity<ResponseDTO> getEmployeePayrollDataByName(@PathVariable("empName") String empName) {
         List<Employee> empList = employeeService.getEmployeeDataByName(empName);
         ResponseDTO responseDTO = new ResponseDTO("Get Call for employee by name Successful", empList);
         return new ResponseEntity<ResponseDTO>(responseDTO, HttpStatus.OK);
     }
-    @GetMapping("dept/{dept}")
+    @GetMapping("getByDept/{dept}")
     public ResponseEntity<ResponseDTO> getEmployeePayrollDataByDepartment(@PathVariable("dept") String dept) {
         List<Employee> empList = employeeService.getEmployeeDataByDepartment(dept);
         ResponseDTO responseDTO = new ResponseDTO("Get Call for employee by department Successful", empList);
@@ -53,7 +54,7 @@ public class EmployeeController {
         ResponseDTO responseDTO = new ResponseDTO("Updated Employee Payroll Data Successfully",employeeData);
         return  new ResponseEntity<>(responseDTO,HttpStatus.OK);
     }
-    @DeleteMapping("/delete/{empId}")
+    @DeleteMapping("delete/{empId}")
     public ResponseEntity<ResponseDTO> deleteEmployeePayroll(@PathVariable int empId){
         employeeService.deleteEmployeePayrollData(empId);
         ResponseDTO responseDTO = new ResponseDTO("Deleted successfully", empId);

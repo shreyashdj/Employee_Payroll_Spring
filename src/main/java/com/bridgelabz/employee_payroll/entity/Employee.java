@@ -24,7 +24,7 @@ public class Employee {
     @ElementCollection
     @CollectionTable(name = "employee_department",joinColumns = @JoinColumn(name = "id"))
     @Column(name = "department")
-    private List<String> department;
+    private List<String> departments;
 
     public Employee(EmployeeDTO employeeDTO) {
         this.name = employeeDTO.getName();
@@ -33,7 +33,7 @@ public class Employee {
         this.startDate = employeeDTO.getStartDate();
         this.note = employeeDTO.getNote();
         this.profilePic = employeeDTO.getProfilePic();
-        this.department = employeeDTO.getDepartment();
+        this.departments = employeeDTO.getDepartments();
     }
 
 }

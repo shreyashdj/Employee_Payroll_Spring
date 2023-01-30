@@ -13,9 +13,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Employee Payroll</name>
 	<description>Employee Payroll</description>
-	<properties>
-		<java.version>17</java.version>
-	</properties>
+    <properties>
+        <java.version>19</java.version>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
+    </properties>
 	<dependencies>
 		<dependency>
 			<groupId>mysql</groupId>
